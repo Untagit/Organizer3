@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update resident</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="main_container">
+    <h2>Zmień dane osoby</h2>
+    <p></p>
+<form action="#" th:action="@{/update/{id}(id=${resident.id})}" th:object="${resident}" method="post">
+
+  <label for="lastname">Nazwisko</label>
+  <input type="text" th:field="*{lastname}" id="lastname" placeholder="Nazwisko">
+  <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></span>
+
+  <label for="firstname">Imię</label>
+  <input type="text" th:field="*{firstname}" id="firstname" placeholder="Imię">
+  <span th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></span>
+  <input type="submit" value="Zapisz zmiany">
+
+</form>
+    <p></p>
+    <button class="btn btn-outline-primary" onclick="location.href='/list';">
+        Wróć do listy
+    </button>
+</div>
+</body>
+</html>

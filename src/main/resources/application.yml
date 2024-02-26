@@ -1,0 +1,37 @@
+spring:
+  main:
+    allow-circular-references: true
+  application:
+    name: Organizer 3
+    title: Organizer 3
+    domain:
+    url: http://localhost:9090/home
+    description:
+    keywords:
+    authors:
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak-realm-id:
+            issuer-uri: http://localhost:8080/realms/myrealm
+        registration:
+          keycloak-confidential-user:
+            authorization-grant-type: authorization_code
+            client-name: MUser
+            client-id: muser
+            client-secret: XH3G0D5r1IfblrKAswxPOAikPT0dZz9M
+            provider: keycloak-realm-id
+            scope: openid,profile,email,offline_access,roles # wymienione scopes muszą być na liście Clients > nazwa_klienta > Client scopes
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8080/realms/Organizer4/protocol/openid-connect/certs # klucze publiczne do weryfikowania tokenów dostępu
+        use-resource-role-mappings: true
+  profiles:
+    active: mysql
+
+server:
+  port: 9090
+  servlet:
+      session:
+        timeout: 43200m

@@ -1,0 +1,39 @@
+<configuration>
+
+    <!-- Variables -->
+    <property name="LOG_FILE" value="app" />
+    <property name="LOG_DIR" value="logs" />
+    <property name="ARCHIVE_DIR" value="${LOG_DIR}/archived" />
+
+
+    <!-- ============== File appender ============== -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${LOG_FILE}.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${ARCHIVE_DIR}/%d{yyyy/MM}/${LOG_FILE}.gz</fileNamePattern>
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Loggers can be created & defined "per package", and each can be set to a different logging level -->
+    <logger name="com.aussiedev81" level="info">
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <!-- ============== Console appender ============== -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Set the root (parent) logger level -->
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>

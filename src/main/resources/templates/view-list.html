@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-5">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex">
+  <title>Organizer 3</title>
+  <link rel="stylesheet" th:href="@{/styles.css}" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div th:switch="${residents}">
+  <!--sec:authorize="hasAuthority('USER')"-->
+  <!--<h2 th:case="null">Lista osób jest pusta!</h2>-->
+  <div class="main_container">
+    <div id="residents_list" th:case="*">
+      <h2>Lista podopiecznych</h2>
+      <p></p>
+      <!--<button class="btn btn-outline-primary" onclick="location.href='/newresident';">
+        Dodaj nową osobę
+      </button>-->
+      <form style="display: inline" th:action="@{/logout}" method="post">
+        <button class="btn btn-outline-primary" type="submit">Wyloguj</button>
+      </form>
+      <table class="styled-table">
+        <thead>
+        <tr>
+          <th>Lp.</th>
+          <th>Nazwisko</th>
+          <th>Imię</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="resident,iterationStatus : ${residents}">
+          <!-- <tr th:each="resident : ${#lists.sort(residents)}">-->
+          <td th:text=${iterationStatus.count}></td>
+          <td th:text="${resident.lastname}"></td>
+          <td th:text="${resident.firstname}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

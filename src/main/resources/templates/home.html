@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-5">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <title>Organizer 3</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div th:switch="${residents}">
+    <div class="main_container">
+    <h1>Organizer 3</h1>
+    <p></p>
+        <button class="btn btn-outline-primary" onclick="location.href='/view-list';">
+            Przeglądaj listę
+        </button>
+        <button class="btn btn-outline-primary" onclick="location.href='/edit-list';">
+            Edytuj dane
+        </button>
+    </div>
+</div>
+</body>
+</html>
